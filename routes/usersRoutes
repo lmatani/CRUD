@@ -1,0 +1,94 @@
+const express = require('express');
+const router = express.Router();
+
+let usuarios = [
+    { id: 1, nombre: 'Ryu', edad: 32, lugarProcedencia: 'Japón' },
+    { id: 2, nombre: 'Chun-Li', edad: 29, lugarProcedencia: 'China' },
+    { id: 3, nombre: 'Guile', edad: 35, lugarProcedencia: 'Estados Unidos' },
+    { id: 4, nombre: 'Dhalsim', edad: 45, lugarProcedencia: 'India' },
+    { id: 5, nombre: 'Blanka', edad: 32, lugarProcedencia: 'Brasil' },
+];
+
+router.get('/', (req, res) => {
+    let mostrarUsuarios = `<h1>Bienvenido a Usuarios - Street Fighter Edition</h1>
+    ${getUsersHtml()}
+    `;
+    res.send(mostrarUsuarios);
+  });
+
+
+// Obtiene la lista de todos los usuarios.
+router.get('/usuarios', (req, res) => {
+    return res.status(200).json(usuarios);
+});
+
+//Obtiene un usuario por nombre.
+router.get('/usuarios/:nombre', (req, res) => {
+	const pNombre = req.params.nombre;
+    //console.log(pNombre);
+
+    const usuarioEncontrado = usuarios.find((usuario) => usuario.nombre === pNombre.trim());
+    if (usuarioEncontrado === undefined)
+        return res.status(404).json({ message: 'Usuario no encontrado! Prueba con otro nombre.' });
+
+    return res.status(200).json(usuarioEncontrado);
+    
+});
+
+
+//Crea un nuevo usuario.
+router.post('/usuarios', (req, res) => {
+    //console.log(req.method, req.path);
+    const datosUsuario = req.body;
+
+    const mensaje = validaDatosUsuario (datosUsuario);
+    
+    if (mensaje === ''){
+        const nuevoUsuario = {
+            id: usuarios.length + 1,
+            ...datosUsuario
+        };
+        usuarios.push(nuevoUsuario);
+        res.status(201).json(nuevoUsuario);
+    }
+    else {
+        res.status(404).json({ message:  mensaje });
+    }
+    
+});
+
+
+function validaDatosUsuario (datosUsuario) {
+    let mensaje = '';
+
+    if (datosUsuario !== undefined)
+    {
+        if (datosUsuario.nombre === undefined || datosUsuario.nombre.trim() === ''){
+            mensaje = 'Nombre de usuario incorrecto.';
+        }
+        else if ( datosUsuario.edad === undefined || datosUsuario.edad < 1){
+            mensaje = 'Edad de usuario incorrecta.';
+        }
+        else if (datosUsuario.lugarProcedencia === undefined || datosUsuario.lugarProcedencia.trim() === ''){
+            mensaje = 'Lugar de procedencia incorrecta.';
+        }
+    }
+    else {
+        mensaje = 'Todos los campos deben venir informados. Revisa tú petición.'
+    }
+    return mensaje;
+}
+
+function getUsersHtml(){
+    const result = `<h2>Lista de Usuarios</h2><ul>
+        ${usuarios
+            .map(
+            (usuario) => `<li><b>Usuario ID:</b> ${usuario.id} <ul><li> <b>Nombre:</b> ${usuario.nombre}</li> <li> <b>Edad:</b> ${usuario.edad} </li><li><b>Lugar de Procedencia:</b> ${usuario.lugarProcedencia}</li></ul> </li><br>`
+            )
+            .join('')}
+        </ul>  
+        <br/>`;
+    return result;
+}
+
+module.exports = router;

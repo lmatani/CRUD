@@ -1,0 +1,52 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "UsuariosSF",
+    "collectionId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
+    "dateExported": "2024-04-28T18:00:38.039Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "9d3bab67-9b9c-4016-8073-734b5c34994f",
+            "colId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
+            "containerId": "",
+            "name": "Lista de usuarios",
+            "url": "http://localhost:3000/usuarios",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-28T17:58:32.280Z",
+            "modified": "2024-04-28T17:58:41.936Z",
+            "headers": []
+        },
+        {
+            "_id": "ec532eb7-3f14-4bde-a668-0329862bfb3c",
+            "colId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
+            "containerId": "",
+            "name": "Consulta Usuario",
+            "url": "http://localhost:3000/usuarios/Blanka",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-04-28T17:59:26.720Z",
+            "modified": "2024-04-28T17:59:31.133Z",
+            "headers": []
+        },
+        {
+            "_id": "53a10030-9576-401b-bd32-4f5fd8e1c53d",
+            "colId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
+            "containerId": "",
+            "name": "Crear Usuario",
+            "url": "http://localhost:3000/usuarios",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-04-28T18:00:05.627Z",
+            "modified": "2024-04-28T18:00:14.741Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Mike\",\n  \"edad\": 32,\n  \"lugarProcedencia\": \"EEUU\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "QRecL5jndRql_FgK60mOC3BtrUrP8ybM1VM8yKPmRruSuLFAhWdeBXc1bdBOHlb1YZQR8a4Z7go6_UfEpl1ldQ"
+}
