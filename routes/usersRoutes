@@ -69,9 +69,6 @@ router.put('/usuarios/:nombre', (req, res) => {
             usuarios[indexUsuario].nombre = datosUsuario.nombre;
             usuarios[indexUsuario].edad = datosUsuario.edad;
             usuarios[indexUsuario].lugarProcedencia = datosUsuario.lugarProcedencia;
-
-            //const { nombre, edad, lugarProcedencia } = datosUsuario;
-            //usuarios[indexUsuario] = { nombre, edad, lugarProcedencia };
         }
         
         res.status(200).json(usuarios[indexUsuario]);
