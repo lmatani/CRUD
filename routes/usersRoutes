@@ -94,6 +94,9 @@ router.delete('/usuarios/:nombre', (req, res) => {
 	const pNombre = req.params.nombre;
     console.log(pNombre);
 
+    if (usuarios === null || usuarios === undefined || usuarios.length < 1)
+        return res.status(404).json({ message: 'La lista de usuarios está vacía.' });
+    
     const usuarioAEliminar = usuarios.find((usuario) => usuario.nombre === pNombre.trim());
     if (usuarioAEliminar === undefined)
         return res.status(404).json({ message: 'No se ha podido realizar la eliminación. El usuario no existe.' });
