@@ -57,6 +57,46 @@ router.post('/usuarios', (req, res) => {
     
 });
 
+//Modifica un usuario.
+router.put('/usuarios/:nombre', (req, res) => {
+    const pNombre = req.params.nombre;
+    const datosUsuario = req.body;
+
+    const mensaje = validaDatosUsuario (datosUsuario);
+    if (mensaje === ''){
+        const indexUsuario = usuarios.findIndex((usuario) => usuario.nombre === pNombre.trim());
+        if (indexUsuario !== -1) {
+            usuarios[indexUsuario].nombre = datosUsuario.nombre;
+            usuarios[indexUsuario].edad = datosUsuario.edad;
+            usuarios[indexUsuario].lugarProcedencia = datosUsuario.lugarProcedencia;
+
+            //const { nombre, edad, lugarProcedencia } = datosUsuario;
+            //usuarios[indexUsuario] = { nombre, edad, lugarProcedencia };
+        }
+        
+        res.status(200).json(usuarios[indexUsuario]);
+    }
+    else {
+        res.status(404).json({ message:  mensaje });
+    }
+
+});
+
+
+//Elimina un usuario
+router.delete('/usuarios/:nombre', (req, res) => {
+	const pNombre = req.params.nombre;
+    console.log(pNombre);
+
+    const usuarioAEliminar = usuarios.find((usuario) => usuario.nombre === pNombre.trim());
+    if (usuarioAEliminar === undefined)
+        return res.status(404).json({ message: 'No se ha podido realizar la eliminación. El usuario no existe.' });
+
+    usuarios = usuarios.filter((usuario) => usuario.nombre !== pNombre.trim());
+    return res.status(200).json(usuarioAEliminar);
+
+});
+
 
 function validaDatosUsuario (datosUsuario) {
     let mensaje = '';

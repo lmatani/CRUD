@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "UsuariosSF",
     "collectionId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
-    "dateExported": "2024-04-28T18:00:38.039Z",
+    "dateExported": "2024-04-29T20:11:20.182Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -23,11 +23,11 @@
             "colId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
             "containerId": "",
             "name": "Consulta Usuario",
-            "url": "http://localhost:3000/usuarios/Blanka",
+            "url": "http://localhost:3000/usuarios/Dhalsim",
             "method": "GET",
             "sortNum": 30000,
             "created": "2024-04-28T17:59:26.720Z",
-            "modified": "2024-04-28T17:59:31.133Z",
+            "modified": "2024-04-29T20:10:19.272Z",
             "headers": []
         },
         {
@@ -39,14 +39,43 @@
             "method": "POST",
             "sortNum": 40000,
             "created": "2024-04-28T18:00:05.627Z",
-            "modified": "2024-04-28T18:00:14.741Z",
+            "modified": "2024-04-29T19:49:45.502Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"nombre\": \"Mike\",\n  \"edad\": 32,\n  \"lugarProcedencia\": \"EEUU\"\n}",
+                "raw": "{\n  \"nombre\": \"Izuku\",\n  \"edad\": 15,\n  \"lugarProcedencia\": \"Japón\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "0eb9b3ac-40d6-4d5d-98fe-852421ae7dd2",
+            "colId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
+            "containerId": "",
+            "name": "Modificar Usuario",
+            "url": "http://localhost:3000/usuarios/Blanka",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-04-29T19:39:16.906Z",
+            "modified": "2024-04-29T19:40:09.111Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Blanka\",\n  \"edad\": 38,\n  \"lugarProcedencia\": \"Cuba\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "6eb6e56a-09a1-4303-9933-7047b3ee2812",
+            "colId": "cbb28967-613f-46e3-9c62-6dfccd6846b0",
+            "containerId": "",
+            "name": "Eliminar Usuario",
+            "url": "http://localhost:3000/usuarios/Guile",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-04-29T19:40:47.647Z",
+            "modified": "2024-04-29T20:08:15.755Z",
+            "headers": []
         }
     ],
-    "ref": "QRecL5jndRql_FgK60mOC3BtrUrP8ybM1VM8yKPmRruSuLFAhWdeBXc1bdBOHlb1YZQR8a4Z7go6_UfEpl1ldQ"
+    "ref": "QRecL5jndRql_FgK60mOC-HfjpJYSUWloUTY8TWxgTsDoL_LI-gH-ha_uvI_GENGOsUtGrQouKNFaRm5CYq9Jg"
 }
