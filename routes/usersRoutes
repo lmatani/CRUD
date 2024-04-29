@@ -64,6 +64,10 @@ router.post('/usuarios', (req, res) => {
 router.put('/usuarios/:nombre', (req, res) => {
     const pNombre = req.params.nombre;
     const datosUsuario = req.body;
+
+    if (usuarios === null || usuarios === undefined || usuarios.length < 1)
+        return res.status(404).json({ message: 'La lista de usuarios está vacía.' });
+
     const indexUsuario = usuarios.findIndex((usuario) => usuario.nombre === pNombre.trim());
     if (indexUsuario !== -1) {
         const mensaje = validaDatosUsuario (datosUsuario);
