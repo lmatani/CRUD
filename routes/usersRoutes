@@ -19,6 +19,9 @@ router.get('/', (req, res) => {
 
 // Obtiene la lista de todos los usuarios.
 router.get('/usuarios', (req, res) => {
+    if (usuarios === null || usuarios === undefined || usuarios.length < 1)
+        return res.status(200).json({ message: 'La lista de usuarios está vacía.' });
+
     return res.status(200).json(usuarios);
 });
 
@@ -61,20 +64,22 @@ router.post('/usuarios', (req, res) => {
 router.put('/usuarios/:nombre', (req, res) => {
     const pNombre = req.params.nombre;
     const datosUsuario = req.body;
-
-    const mensaje = validaDatosUsuario (datosUsuario);
-    if (mensaje === ''){
-        const indexUsuario = usuarios.findIndex((usuario) => usuario.nombre === pNombre.trim());
-        if (indexUsuario !== -1) {
+    const indexUsuario = usuarios.findIndex((usuario) => usuario.nombre === pNombre.trim());
+    if (indexUsuario !== -1) {
+        const mensaje = validaDatosUsuario (datosUsuario);
+        if (mensaje === ''){
             usuarios[indexUsuario].nombre = datosUsuario.nombre;
             usuarios[indexUsuario].edad = datosUsuario.edad;
-            usuarios[indexUsuario].lugarProcedencia = datosUsuario.lugarProcedencia;
+            usuarios[indexUsuario].lugarProcedencia = datosUsuario.lugarProcedencia;+
+            res.status(200).json(usuarios[indexUsuario]);
+        }
+        else {
+            res.status(404).json({ message:  mensaje });
         }
         
-        res.status(200).json(usuarios[indexUsuario]);
     }
     else {
-        res.status(404).json({ message:  mensaje });
+        res.status(404).json({ message:  'El usuario que intentas modificar no existe.' });
     }
 
 });
